@@ -1,0 +1,3 @@
+my test file
+my document file
+my image file
