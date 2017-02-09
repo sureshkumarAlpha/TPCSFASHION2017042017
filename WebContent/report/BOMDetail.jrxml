@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BOM" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" >
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="117"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT  isnull(bddyn.heading,'') heading,g.group_name,it.Mat_Name,p.party_name,bd.required_qty,bd.UOM ,bddyn.part
+FROM bom b inner join bom_details bd on b.bom_id=bd.bom_id
+inner join item it on it.Mat_Id=bd.Mat_Id
+inner join groups g on g.group_Id=it.group_Id
+left join party p on p.party_id=bd.supplier_id
+inner join Uom_Master u on u.UOM=bd.UOM
+Left Join bom_dynamic sedf on b.bom_id = sedf.bom_id
+Left Join Bom_Details_dynamic bddyn on bd.bom_detail_id = bddyn.bom_detail_id
+where b.bom_id=4
+group by isnull(bddyn.heading,''),g.group_name,it.Mat_Name,p.party_name,bd.required_qty,bd.UOM ,bddyn.part]]>
+	</queryString>
+	<field name="heading" class="java.lang.String"/>
+	<field name="group_name" class="java.lang.String"/>
+	<field name="Mat_Name" class="java.lang.String"/>
+	<field name="party_name" class="java.lang.String"/>
+	<field name="required_qty" class="java.lang.Double"/>
+	<field name="UOM" class="java.lang.String"/>
+	<field name="part" class="java.lang.String"/>
+	<group name="heading">
+		<groupExpression><![CDATA[$F{heading}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement positionType="Float" x="4" y="0" width="818" height="17" />
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{heading}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="156" y="17" width="262" height="20" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="422" y="19" width="121" height="19" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Part/spec]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="688" y="20" width="78" height="20" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Norms]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="548" y="18" width="135" height="22" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Supplier]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="770" y="19" width="52" height="20" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Unit]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="3" y="20" width="147" height="20" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Material]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="156" y="1" width="262" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Mat_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="548" y="2" width="135" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{party_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="422" y="2" width="121" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{part}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="770" y="0" width="52" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UOM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="688" y="1" width="78" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{required_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="4" y="2" width="146" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{group_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="24" width="842" height="1" />
+			</line>
+			<line>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="-24" width="842" height="1" />
+			</line>
+			<line>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="842" height="1" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="419" y="-24" width="1" height="49" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="153" y="-24" width="1" height="49" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="545" y="-24" width="1" height="49" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="685" y="-24" width="1" height="49" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="767" y="-24" width="1" height="49" />
+			</line>
+		</band>
+	</detail>
+</jasperReport>

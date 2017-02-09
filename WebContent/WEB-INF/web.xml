@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" metadata-complete="true" version="3.0">
+  <display-name>TPCSFASHOIN</display-name>
+  <description> TPCSFASHOIN </description>
+  <welcome-file-list>
+    <welcome-file>jsp/login/Login.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.alpha.tpcsfashion.servlet.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+    <description></description>
+    <display-name>RequestHandlerServlet</display-name>
+    <servlet-name>RequestHandlerServlet</servlet-name>
+    <servlet-class>com.alpha.tpcsfashion.framework.RequestHandlerServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RequestHandlerServlet</servlet-name>
+    <url-pattern>/RequestHandlerServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+		<description></description>
+		<display-name>FileUploadServlet</display-name>
+		<servlet-name>FileUploadServlet</servlet-name>
+		<servlet-class>com.alpha.tpcsfashion.fileupload.FileUploadServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>FileUploadServlet</servlet-name>
+		<url-pattern>/FileUploadServlet</url-pattern>
+	</servlet-mapping>
+	
+   <servlet>
+    <description></description>
+    <display-name>ChangeExpiredPassword</display-name>
+    <servlet-name>ChangeExpiredPassword</servlet-name>
+    <servlet-class>com.alpha.tpcsfashion.servlet.ChangeExpiredPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeExpiredPassword</servlet-name>
+    <url-pattern>/ChangeExpiredPassword</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+ 
+              
+              <Resource name="jdbc/COMMON"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="tpcs"
+              password="tpcs"
+              driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              url="jdbc:sqlserver://AS21\SQLEXPRESS;databaseName=tpcs_fashion_clients_info;user=tpcs;password=tpcs;"
+              validationQuery="select 1"
+              maxActive="100"
+              maxIdle="10"/>
+              
+<!--               
+               <Resource name="jdbc/COMMON"
+auth="Container"
+type="javax.sql.DataSource"
+username="tpcsplm"
+password="WINwin123"
+driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url="jdbc:sqlserver://122.248.250.235;databaseName=tpcs_fashion_clients_info;user=tpcsplm;password=WINwin123;"
+validationQuery="select 1"
+maxActive="100"
+maxIdle="10"/>  -->
+            
+</Context>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BOM" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
+	<parameter name="imagepath" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["\\\\server\\G\\Java(BUP)\\Source\\TPCSFASHION\\TPCSFASHION20160621\\WebContent\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  b.bom_id,b.bom_no,b.customer_id,c.party_name,b.remarks ,bomdyn.season,bomdyn.size_range,bomdyn.construction
+FROM bom b inner join item m on m.mat_id=b.product_id
+inner join party c on c.party_id=b.customer_id
+Left Join bom_dynamic bomdyn on b.bom_id = bomdyn.bom_id
+where b.bom_id=14]]>
+	</queryString>
+	<field name="bom_id" class="java.lang.Integer"/>
+	<field name="bom_no" class="java.lang.String"/>
+	<field name="customer_id" class="java.lang.Integer"/>
+	<field name="party_name" class="java.lang.String"/>
+	<field name="remarks" class="java.lang.String"/>
+	<field name="season" class="java.lang.String"/>
+	<field name="size_range" class="java.lang.String"/>
+	<field name="construction" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="89" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="698" y="62" width="100" height="20" />
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{season}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="2" y="65" width="281" height="17" />
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bom_no}+"-"+$F{season}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="259" y="0" width="295" height="20" />
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{party_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="253" y="22" width="297" height="20" />
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOM SPECIFICATION SHEET]]></text>
+			</staticText>
+			<image>
+				<reportElement positionType="Float" x="2" y="0" width="116" height="49" />
+				<imageExpression><![CDATA[$P{imagepath}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="466" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="0" y="51" width="141" height="20" />
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Size Ranges"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="144" y="51" width="658" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{size_range}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="73" width="140" height="20" />
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Construction"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="144" y="73" width="658" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{construction}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="96" width="140" height="20" />
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Remarks:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="144" y="95" width="658" height="20" />
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="0" y="50" width="802" height="1" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="0" y="71" width="802" height="1" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="0" y="94" width="802" height="1" />
+			</line>
+			<line>
+				<reportElement positionType="Float" x="140" y="51" width="1" height="42" />
+			</line>
+			<image hAlign="Center">
+				<reportElement positionType="Float" x="-2" y="201" width="800" height="265" />
+				<imageExpression><![CDATA[$P{imagepath}]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement x="13" y="129" width="360" height="50" />
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Component.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="116"/>
+	</detail>
+</jasperReport>
